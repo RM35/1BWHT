@@ -1,22 +1,18 @@
 #include <iostream>
 #include <Windows.h>
 #include "proc.hpp"
+#include "wall_hack.hpp"
 
 int main()
 {
-	//Get ProcId of process
 	DWORD procId = GetProcId(L"CoDMP.exe");
-	std::cout << "Process ID: " << procId << std::endl;
-
-	//Get Base address
 	uintptr_t moduleBase = GetmoduleBaseAddress(procId, L"cgame_mp_x86.dll");
-
-	//get process handle
 	HANDLE hProcess = 0;
 	hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, procId);
 
-	bool noodle = false;
-	bool straight_noodle = false;
+	bool wall_hack_state = false;
+	wall_hack wh;
+	bool trigger_bot_state = false;
 	int straight_value = 0;
 	INPUT straight;
 
@@ -27,32 +23,22 @@ int main()
 	{
 		if (GetAsyncKeyState(VK_XBUTTON1))
 		{
-			if (noodle == FALSE)
-			{
-				WriteProcessMemory(hProcess, (void*)(0x300296B7), (PBYTE)"\x88", 2, 0);
-				noodle = TRUE;
-			}
-			else
-			{
-				WriteProcessMemory(hProcess, (void*)(0x300296B7), (PBYTE)"\x80", 2, 0);
-				noodle = FALSE;
-			}
-			std::cout << "1BW on? : " << noodle << std::endl;
+			wall_hack_state = wh.toggle(wall_hack_state, hProcess);
 		}
 		if (GetAsyncKeyState(VK_XBUTTON2))
 		{
-			if (straight_noodle == FALSE)
+			if (trigger_bot_state == false)
 			{
-				straight_noodle = TRUE;
+				trigger_bot_state = true;
 			}
 			else
 			{
-				straight_noodle = FALSE;
+				trigger_bot_state = false;
 			}
-			std::cout << "straight on? : " << straight_noodle << std::endl;
+			std::cout << "straight on? : " << trigger_bot_state << std::endl;
 		}
 		
-		if (straight_noodle)
+		if (trigger_bot_state)
 		{
 			ReadProcessMemory(hProcess, (int*)0x301E6038, &straight_value, sizeof(straight_value), nullptr);
 
