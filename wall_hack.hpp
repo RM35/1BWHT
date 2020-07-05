@@ -2,7 +2,6 @@
 #define whHEADER
 
 #include <windows.h>
-#include "proc.hpp"
 
 class wall_hack
 {

@@ -24,12 +24,18 @@
     <ClCompile Include="wall_hack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="trigger_bot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="proc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="wall_hack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trigger_bot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

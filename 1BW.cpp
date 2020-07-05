@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "proc.hpp"
 #include "wall_hack.hpp"
+#include "trigger_bot.hpp"
 
 int main()
 {
@@ -12,46 +13,31 @@ int main()
 
 	bool wall_hack_state = false;
 	wall_hack wh;
+
 	bool trigger_bot_state = false;
-	int straight_value = 0;
-	INPUT straight;
+	trigger_bot tbot;
 
-	straight.type = INPUT_MOUSE;
-	straight.mi.dwFlags = (MOUSEEVENTF_LEFTDOWN);
-
+	//Main Loop
 	for (;; Sleep(10))
 	{
 		if (GetAsyncKeyState(VK_XBUTTON1))
 		{
 			wall_hack_state = wh.toggle(wall_hack_state, hProcess);
+			std::cout << "Wall hack toggled to state: " << wall_hack_state << std::endl;
+			Sleep(200);
 		}
 		if (GetAsyncKeyState(VK_XBUTTON2))
 		{
-			if (trigger_bot_state == false)
-			{
-				trigger_bot_state = true;
-			}
-			else
-			{
-				trigger_bot_state = false;
-			}
-			std::cout << "straight on? : " << trigger_bot_state << std::endl;
+			trigger_bot_state = tbot.toggle(trigger_bot_state);
+			std::cout << "Trigger Bot toggled to state: " << trigger_bot_state << std::endl;
+			Sleep(200);
 		}
-		
 		if (trigger_bot_state)
 		{
-			ReadProcessMemory(hProcess, (int*)0x301E6038, &straight_value, sizeof(straight_value), nullptr);
-
-			if (straight_value != 0)
+			if (tbot.on_target_check(hProcess))
 			{
-				straight.type = INPUT_MOUSE;
-				straight.mi.dwFlags = (MOUSEEVENTF_LEFTDOWN);
-				SendInput(1, &straight, sizeof(INPUT));
-				ZeroMemory(&straight, sizeof(straight));
-				straight.type = INPUT_MOUSE;
-				straight.mi.dwFlags = (MOUSEEVENTF_LEFTUP);
-				SendInput(1, &straight, sizeof(INPUT));
-				Sleep(50);
+				tbot.shoot_gun(50);
+				std::cout << "Trigger bot has shot at target" << std::endl;
 			}
 		}
 	}
