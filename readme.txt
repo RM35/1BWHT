@@ -1,0 +1,1 @@
+Credits for WH address: https://www.unknowncheats.me/wiki/One_byte_wallhack_CoD
