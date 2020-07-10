@@ -71,13 +71,21 @@ int main()
 			if (tbot.on_target_check(hProcess))
 			{
 				tbot.shoot_gun(1500, hProcess);
-				//std::cout << "Trigger bot has shot at target" << std::endl;
 			}
 		}
 
 		while (GetAsyncKeyState(VK_SHIFT) && state.fast_run_state)
 		{
 			f_run.do_fast_run_macro(20);
+		}
+
+		if (state.no_recoil_state && cfg.no_recoil)
+		{
+			n_recoil.nop_recoil_function(hProcess);
+		}
+		else if (!state.no_recoil_state && cfg.no_recoil) 
+		{
+			n_recoil.original_recoil_function(hProcess);
 		}
 	}
 }
