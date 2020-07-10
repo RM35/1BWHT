@@ -27,6 +27,18 @@
     <ClCompile Include="trigger_bot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ESP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fast_run.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="no_recoil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="proc.hpp">
@@ -38,8 +50,21 @@
     <ClInclude Include="trigger_bot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ESP.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fast_run.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="no_recoil.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
+    <Text Include="config.txt" />
   </ItemGroup>
 </Project>

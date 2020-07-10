@@ -33,9 +33,14 @@ bool trigger_bot::on_target_check(HANDLE hProcess)
 	}
 }
 
-void trigger_bot::shoot_gun(int delay)
+void trigger_bot::shoot_gun(int delay, HANDLE hProcess)
 {
+	float ads = 1;
+
 	mouse_input.mi.dwFlags = (MOUSEEVENTF_LEFTDOWN);
+
+	WriteProcessMemory(hProcess, (float*)(0x301F87D4), &ads, sizeof(ads), nullptr);
+
 	SendInput(1, &mouse_input, sizeof(INPUT));
 	ZeroMemory(&mouse_input, sizeof(mouse_input));
 	mouse_input.mi.dwFlags = (MOUSEEVENTF_LEFTUP);
