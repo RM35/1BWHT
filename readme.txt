@@ -1,5 +1,6 @@
-Credits for WH address: https://www.unknowncheats.me/wiki/One_byte_wallhack_CoD
+Credit for WH address: https://www.unknowncheats.me/wiki/One_byte_wallhack_CoD
+Credit for no recoil addresses to nop: attilathedud https://github.com/attilathedud
 
 
-Completet Features: 1 byte wallhack, trigger bot, fast run (a/d spam), No Recoil
-Todo: ESP, Aimbot, fast run speed cap
+Completed Features: 1 byte wallhack, trigger bot, fast run (a/d spam), No Recoil
+Todo: box/name ESP, Aimbot, fast run speed cap
