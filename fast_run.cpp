@@ -10,7 +10,7 @@ bool fast_run::toggle(bool fast_run_state)
 	return !fast_run_state;
 }
 
-void fast_run::do_fast_run_macro(int delay)
+void fast_run::do_fast_run_macro(int delay, float speed_cap)
 {
 	kb_input.ki.time = 0;
 	kb_input.ki.wVk = 0;

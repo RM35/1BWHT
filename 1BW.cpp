@@ -76,7 +76,7 @@ int main()
 
 		while (GetAsyncKeyState(VK_SHIFT) && state.fast_run_state)
 		{
-			f_run.do_fast_run_macro(20);
+			f_run.do_fast_run_macro(50, 230);
 		}
 
 		if (state.no_recoil_state && cfg.no_recoil)

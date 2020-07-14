@@ -148,7 +148,7 @@
   <ItemGroup>
     <ClCompile Include="1BW.cpp" />
     <ClCompile Include="fast_run.cpp" />
-    <ClCompile Include="ESP.cpp" />
+    <ClCompile Include="aimbot.cpp" />
     <ClCompile Include="no_recoil.cpp" />
     <ClCompile Include="proc.cpp" />
     <ClCompile Include="trigger_bot.cpp" />
@@ -157,7 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fast_run.hpp" />
-    <ClInclude Include="ESP.hpp" />
+    <ClInclude Include="aimbot.hpp" />
     <ClInclude Include="no_recoil.hpp" />
     <ClInclude Include="proc.hpp" />
     <ClInclude Include="trigger_bot.hpp" />
