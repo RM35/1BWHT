@@ -5,6 +5,7 @@
 #include "trigger_bot.hpp"
 #include "fast_run.hpp"
 #include "no_recoil.hpp"
+#include "aimbot.hpp"
 #include "utils.hpp"
 
 int main()
@@ -34,37 +35,38 @@ int main()
 	trigger_bot tbot;
 	fast_run f_run;
 	no_recoil n_recoil;
+	aimbot aimb;
+
+	aimb.get_locs();
 
 	for (;; Sleep(1))
 	{
-
+		//Toggles
 		if (GetAsyncKeyState(VK_NUMPAD1) && cfg.wall_hack)
 		{
 			state.wall_hack_state = wh.toggle(state.wall_hack_state, hProcess);
-			update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state);
 			Sleep(200);
 		}
 
 		if (GetAsyncKeyState(VK_NUMPAD2) && cfg.trigger_bot)
 		{
 			state.trigger_bot_state = tbot.toggle(state.trigger_bot_state);
-			update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state);
 			Sleep(200);
 		}
 
 		if (GetAsyncKeyState(VK_NUMPAD3) && cfg.fast_run)
 		{
 			state.fast_run_state = f_run.toggle(state.fast_run_state);
-			update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state);
 			Sleep(200);
 		}
 
 		if (GetAsyncKeyState(VK_NUMPAD4) && cfg.no_recoil)
 		{
 			state.no_recoil_state = n_recoil.toggle(state.no_recoil_state);
-			update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state);
 			Sleep(200);
 		}
+
+		//update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state);
 
 		if (state.trigger_bot_state && cfg.trigger_bot)
 		{

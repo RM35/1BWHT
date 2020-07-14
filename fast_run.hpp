@@ -12,4 +12,4 @@ public:
 	void do_fast_run_macro(int delay, float speed_cap);
 };
 
-#endifwwwww
+#endif
