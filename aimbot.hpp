@@ -13,8 +13,6 @@ public:
         //float pitch,yaw,roll
     };
 
-    //This will only become useful when we go internal, then we can point this struct to memory within cod.exe and populate our values.
-    //For external it is useful to see where our addresses are
     struct centity
     {
     char pad_0000[24];     //0x0000
@@ -34,13 +32,15 @@ public:
     Vector3 coords;        //0x01F8 
     Vector3 view_angs;     //0x0204 
     char pad_0210[24];     //0x0210
-    };                     //Size: 0x0228
-    
-	std::vector<intptr_t> coord_ad;
+    };                     //Size: 0x0228 
+
+    centity centities[64];
 	intptr_t entity_list = 0x30211940;
 
 	aimbot();
-	void get_locs(int players = 10);
+    bool toggle(bool aimbot_state);
+	void update_values(HANDLE hProcess);
+
 };
 
 #endif

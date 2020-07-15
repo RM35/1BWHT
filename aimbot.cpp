@@ -6,16 +6,19 @@ aimbot::aimbot()
 	
 }
 
-void aimbot::get_locs(int players)
+bool aimbot::toggle(bool aimbot_state)
 {
-	intptr_t client_0_coords = entity_list + 0x1F8;
+	return !aimbot_state;
+}
 
-	coord_ad.insert(coord_ad.end(), client_0_coords);
-	print_addr(coord_ad[0]);
+void aimbot::update_values(HANDLE hProcess)
+{
+	ReadProcessMemory(hProcess, (VOID*)entity_list, &centities, sizeof(centities), nullptr);
 
-	for (int i = 1; i <= (players - 1); i++)
+	system("cls");
+	for (int i = 0; i < 16; i++)
 	{
-		coord_ad.insert(coord_ad.end(), client_0_coords + (i + 1) * 522);
-		print_addr(coord_ad[i]);
+		std::cout << "Value " << std::dec << centities[i].cur_wep << std::endl;
 	}
 }
+

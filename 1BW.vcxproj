@@ -149,6 +149,7 @@
     <ClCompile Include="1BW.cpp" />
     <ClCompile Include="fast_run.cpp" />
     <ClCompile Include="aimbot.cpp" />
+    <ClCompile Include="fps_bypass.cpp" />
     <ClCompile Include="no_recoil.cpp" />
     <ClCompile Include="proc.cpp" />
     <ClCompile Include="trigger_bot.cpp" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="fast_run.hpp" />
     <ClInclude Include="aimbot.hpp" />
+    <ClInclude Include="fps_bypass.hpp" />
     <ClInclude Include="no_recoil.hpp" />
     <ClInclude Include="proc.hpp" />
     <ClInclude Include="trigger_bot.hpp" />

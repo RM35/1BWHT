@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 #include <Windows.h>
 #include "proc.hpp"
 #include "wall_hack.hpp"
@@ -7,6 +8,8 @@
 #include "no_recoil.hpp"
 #include "aimbot.hpp"
 #include "utils.hpp"
+#include "fps_bypass.hpp"
+
 
 int main()
 {
@@ -21,6 +24,8 @@ int main()
 		bool trigger_bot = true;
 		bool fast_run = true;
 		bool no_recoil = true;
+		bool aimbot = true;
+		bool fps_bypass = true;
 	} cfg;
 
 	struct state
@@ -29,15 +34,16 @@ int main()
 		bool trigger_bot_state = false;
 		bool fast_run_state = false;
 		bool no_recoil_state = false;
+		bool aimbot = false;
+		int fps_bypass_state = 0;
 	} state;
 	
 	wall_hack wh;
 	trigger_bot tbot;
 	fast_run f_run;
 	no_recoil n_recoil;
-	aimbot aimb;
-
-	aimb.get_locs();
+	aimbot aim_b;
+	fps_bypass fps_b;
 
 	for (;; Sleep(1))
 	{
@@ -66,13 +72,26 @@ int main()
 			Sleep(200);
 		}
 
-		//update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state);
+		if (GetAsyncKeyState(VK_NUMPAD5) && cfg.aimbot)
+		{
+			state.aimbot = aim_b.toggle(state.aimbot);
+			Sleep(200);
+		}
+
+		if (GetAsyncKeyState(VK_NUMPAD6) && cfg.fps_bypass)
+		{
+			state.fps_bypass_state = fps_b.change_state(state.fps_bypass_state);
+			std::cout << "fps changed" << std::endl;
+			Sleep(200);
+		}
+
+		update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state, state.aimbot, state.fps_bypass_state);
 
 		if (state.trigger_bot_state && cfg.trigger_bot)
 		{
 			if (tbot.on_target_check(hProcess))
 			{
-				tbot.shoot_gun(1500, hProcess);
+				tbot.shoot_gun(50, hProcess);
 			}
 		}
 
@@ -88,6 +107,22 @@ int main()
 		else if (!state.no_recoil_state && cfg.no_recoil) 
 		{
 			n_recoil.original_recoil_function(hProcess);
+		}
+
+		if (!state.fps_bypass_state == 0) //checks again inside the func. Unessessary but leaving it in
+		{
+			int frame_delay_ms = 4;
+
+			switch (state.fps_bypass_state)
+			{
+			case 1:
+				frame_delay_ms = 3;
+				break;
+			case 2:
+				frame_delay_ms = 2;
+				break;
+			}
+			fps_b.set_frame_delay(hProcess, frame_delay_ms);
 		}
 	}
 }
