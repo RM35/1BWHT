@@ -109,20 +109,19 @@ int main()
 			n_recoil.original_recoil_function(hProcess);
 		}
 
-		if (!state.fps_bypass_state == 0) //checks again inside the func. Unessessary but leaving it in
+		if (!state.fps_bypass_state == 0) 
 		{
-			int frame_delay_ms = 4;
-
 			switch (state.fps_bypass_state)
 			{
 			case 1:
-				frame_delay_ms = 3;
+				fps_b.set_fps_bypassed(hProcess, 333);
+				std::cout << "fps set to 333" << std::endl;
 				break;
 			case 2:
-				frame_delay_ms = 2;
+				fps_b.set_fps_bypassed(hProcess, 600);
+				std::cout << "fps set to 600" << std::endl;
 				break;
 			}
-			fps_b.set_frame_delay(hProcess, frame_delay_ms);
 		}
 	}
 }
