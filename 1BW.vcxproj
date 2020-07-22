@@ -147,6 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="1BW.cpp" />
+    <ClCompile Include="dotnet_random.cpp" />
     <ClCompile Include="fast_run.cpp" />
     <ClCompile Include="aimbot.cpp" />
     <ClCompile Include="fps_bypass.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="wall_hack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dotnet_random.hpp" />
     <ClInclude Include="fast_run.hpp" />
     <ClInclude Include="aimbot.hpp" />
     <ClInclude Include="fps_bypass.hpp" />

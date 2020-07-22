@@ -42,6 +42,9 @@
     <ClCompile Include="fps_bypass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dotnet_random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="proc.hpp">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fps_bypass.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dotnet_random.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

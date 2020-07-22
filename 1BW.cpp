@@ -9,6 +9,7 @@
 #include "aimbot.hpp"
 #include "utils.hpp"
 #include "fps_bypass.hpp"
+#include "dotnet_random.hpp"
 
 
 int main()
@@ -44,6 +45,7 @@ int main()
 	no_recoil n_recoil;
 	aimbot aim_b;
 	fps_bypass fps_b;
+	dotnet_random random;
 
 	for (;; Sleep(1))
 	{
@@ -81,11 +83,22 @@ int main()
 		if (GetAsyncKeyState(VK_NUMPAD6) && cfg.fps_bypass)
 		{
 			state.fps_bypass_state = fps_b.change_state(state.fps_bypass_state);
-			std::cout << "fps changed" << std::endl;
+			switch (state.fps_bypass_state)
+			{
+			case 0:
+				fps_b.set_fps_bypassed(hProcess, 250);
+				break;
+			case 1:
+				fps_b.set_fps_bypassed(hProcess, 333);
+				break;
+			case 2:
+				fps_b.set_fps_bypassed(hProcess, 600);
+				break;
+			}
 			Sleep(200);
 		}
 
-		update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state, state.aimbot, state.fps_bypass_state);
+		//update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state, state.aimbot, state.fps_bypass_state);
 
 		if (state.trigger_bot_state && cfg.trigger_bot)
 		{
@@ -97,9 +110,14 @@ int main()
 
 		while (GetAsyncKeyState(VK_SHIFT) && state.fast_run_state)
 		{
-			f_run.do_fast_run_macro(50, 230);
+			f_run.do_fast_run_macro(6, 230);
 		}
 
+		while (GetAsyncKeyState(VK_SPACE) && state.fast_run_state)
+		{
+			f_run.do_test(50);
+		}
+		
 		if (state.no_recoil_state && cfg.no_recoil)
 		{
 			n_recoil.nop_recoil_function(hProcess);
@@ -109,19 +127,15 @@ int main()
 			n_recoil.original_recoil_function(hProcess);
 		}
 
-		if (!state.fps_bypass_state == 0) 
-		{
-			switch (state.fps_bypass_state)
-			{
-			case 1:
-				fps_b.set_fps_bypassed(hProcess, 333);
-				std::cout << "fps set to 333" << std::endl;
-				break;
-			case 2:
-				fps_b.set_fps_bypassed(hProcess, 600);
-				std::cout << "fps set to 600" << std::endl;
-				break;
-			}
-		}
+		//aim_b.update_values(hProcess);
+		//aim_b.print_player_client_no();
+		//aim_b.print_client_info(0);
+		//aim_b.print_client_info(1);
+		//aim_b.print_client_info(3);
+		//aim_b.print_client_info(4);
+		//aim_b.print_client_info(5);
+		//aim_b.print_client_info(6);
+		//aim_b.print_client_info(7);
+		//aim_b.print_client_info(8);
 	}
 }
