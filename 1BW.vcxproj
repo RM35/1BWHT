@@ -155,6 +155,7 @@
     <ClCompile Include="proc.cpp" />
     <ClCompile Include="trigger_bot.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="veritas_hook.cpp" />
     <ClCompile Include="wall_hack.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +167,7 @@
     <ClInclude Include="proc.hpp" />
     <ClInclude Include="trigger_bot.hpp" />
     <ClInclude Include="utils.hpp" />
+    <ClInclude Include="veritas_hook.hpp" />
     <ClInclude Include="wall_hack.hpp" />
   </ItemGroup>
   <ItemGroup>

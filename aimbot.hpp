@@ -50,8 +50,8 @@ public:
     };                         //Size: 0x0228 
 
     centity centities[64];
-	intptr_t entity_list = 0x30211940;
-    intptr_t cgt_addr = 0x301E5f00;
+	uintptr_t entity_list = 0x30211940;
+    uintptr_t cgt_addr = 0x301E5f00;
     int closest_client;
     Vector3 writrable_angles;
 

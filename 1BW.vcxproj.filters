@@ -45,6 +45,9 @@
     <ClCompile Include="dotnet_random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="veritas_hook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="proc.hpp">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dotnet_random.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="veritas_hook.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

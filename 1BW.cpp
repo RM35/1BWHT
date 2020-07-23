@@ -10,6 +10,7 @@
 #include "utils.hpp"
 #include "fps_bypass.hpp"
 #include "dotnet_random.hpp"
+#include "veritas_hook.hpp"
 
 
 int main()
@@ -27,6 +28,7 @@ int main()
 		bool no_recoil = true;
 		bool aimbot = true;
 		bool fps_bypass = true;
+		bool veritas_hook = true;
 	} cfg;
 
 	struct state
@@ -37,6 +39,7 @@ int main()
 		bool no_recoil_state = false;
 		bool aimbot = false;
 		int fps_bypass_state = 0;
+		bool veritas_hook_state = false;
 	} state;
 	
 	wall_hack wh;
@@ -45,7 +48,7 @@ int main()
 	no_recoil n_recoil;
 	aimbot aim_b;
 	fps_bypass fps_b;
-	dotnet_random random;
+	veritas_hook veri;
 
 	for (;; Sleep(1))
 	{
@@ -95,6 +98,13 @@ int main()
 				fps_b.set_fps_bypassed(hProcess, 600);
 				break;
 			}
+			Sleep(200);
+		}
+
+		if (GetAsyncKeyState(VK_NUMPAD7) && cfg.veritas_hook)
+		{
+			state.veritas_hook_state = veri.toggle(state.veritas_hook_state);
+			veri.inject_hook(procId, hProcess);
 			Sleep(200);
 		}
 
