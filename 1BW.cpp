@@ -56,6 +56,7 @@ int main()
 		if (GetAsyncKeyState(VK_NUMPAD1) && cfg.wall_hack)
 		{
 			state.wall_hack_state = wh.toggle(state.wall_hack_state, hProcess);
+			std::cout << "Hack is: " << state.wall_hack_state << std::endl;
 			Sleep(200);
 		}
 
@@ -104,7 +105,11 @@ int main()
 		if (GetAsyncKeyState(VK_NUMPAD7) && cfg.veritas_hook)
 		{
 			state.veritas_hook_state = veri.toggle(state.veritas_hook_state);
-			veri.inject_hook(procId, hProcess);
+			std::cout << state.veritas_hook_state << std::endl;
+			if (state.veritas_hook_state == true) 
+			{
+				veri.inject_hook(procId, hProcess);
+			}
 			Sleep(200);
 		}
 
@@ -135,6 +140,23 @@ int main()
 		else if (!state.no_recoil_state && cfg.no_recoil) 
 		{
 			n_recoil.original_recoil_function(hProcess);
+		}
+
+		if (veri.turn_off_hacks(hProcess))
+		{
+			if (state.wall_hack_state)
+			{
+				std::cout << "Hack off triggered. Turning off wall hack" << std::endl;
+				state.wall_hack_state = wh.toggle(state.wall_hack_state, hProcess);
+				veri.reset_flag(hProcess);
+				Sleep(5000);
+				std::cout << "1 second since screenshot turning back on" << std::endl;
+				state.wall_hack_state = wh.toggle(state.wall_hack_state, hProcess);
+			}
+			else
+			{
+				veri.reset_flag(hProcess);
+			}
 		}
 
 		//aim_b.update_values(hProcess);
