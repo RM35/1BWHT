@@ -149,7 +149,7 @@ int main()
 				std::cout << "Hack off triggered. Turning off wall hack" << std::endl;
 				state.wall_hack_state = wh.toggle(state.wall_hack_state, hProcess);
 				veri.reset_flag(hProcess);
-				Sleep(5000);
+				Sleep(1000);
 				std::cout << "1 second since screenshot turning back on" << std::endl;
 				state.wall_hack_state = wh.toggle(state.wall_hack_state, hProcess);
 			}
