@@ -3,17 +3,30 @@
 
 #include <windows.h>
 #include <vector>
+#include "utils.hpp"
 
 class aimbot
 {
 public:
     const float  PI_F = 3.14159265358979f;
 
-    struct Vector3
+    struct client_info_t
     {
-        float x, y, z;
-        //float pitch,yaw,roll
-    };
+    public:
+        int32_t valid_info;   //0x0000
+        char pad_0004[4];     //0x0004
+        int32_t client_no;    //0x0008
+        char name[32][1];     //0x000C
+        int32_t team;         //0x002C
+        int32_t team2;        //0x0030
+        int32_t score;        //0x0034
+        char pad_0038[1084];  //0x0038
+        int32_t stance;       //0x0474
+        char pad_0478[28];    //0x0478
+        int32_t scoping;      //0x0494
+        char pad_0498[20];    //0x0498
+        int32_t wep;          //0x04AC
+    };                        //Size: 0x04B0
 
     struct cg_t
     {
@@ -49,19 +62,26 @@ public:
         char pad_0210[24];     //0x0210
     };                         //Size: 0x0228 
 
+    struct 
+    client_info_t c_info_t[64];
     centity centities[64];
 	uintptr_t entity_list = 0x30211940;
     uintptr_t cgt_addr = 0x301E5f00;
-    int closest_client;
-    Vector3 writrable_angles;
+    uintptr_t x_angle = 0x01493BE4;
+    uintptr_t y_angle = 0x01493BE0;
+
+    Vector3 origin = { 0, 0, 108};
 
 	aimbot();
     bool toggle(bool aimbot_state);
 	void update_values(HANDLE hProcess);
-    void print_client_info(int client_no);
     void print_player_client_no();
-    float yaw_to_enemy(int client_no);
-    int closest_enemy(std::vector<int> enemy_list);
+    Vector3 calc_angles(Vector3 player, Vector3 enemy);
+    void do_aim(Vector3 enemy, HANDLE hProcess);
+    Vector3 get_local_coords();
+    Vector3 get_local_angles();
+    int closest_enemy();
+    void aim_lerp(Vector3 enemy, HANDLE hProcess, int divisions);
 };
 
 #endif

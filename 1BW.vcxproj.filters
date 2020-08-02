@@ -36,13 +36,7 @@
     <ClCompile Include="utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aimbot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="fps_bypass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dotnet_random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="veritas_hook.cpp">
@@ -68,13 +62,7 @@
     <ClInclude Include="utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aimbot.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="fps_bypass.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dotnet_random.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="veritas_hook.hpp">

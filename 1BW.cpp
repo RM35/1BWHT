@@ -6,10 +6,8 @@
 #include "trigger_bot.hpp"
 #include "fast_run.hpp"
 #include "no_recoil.hpp"
-#include "aimbot.hpp"
 #include "utils.hpp"
 #include "fps_bypass.hpp"
-#include "dotnet_random.hpp"
 #include "veritas_hook.hpp"
 
 
@@ -26,7 +24,6 @@ int main()
 		bool trigger_bot = true;
 		bool fast_run = true;
 		bool no_recoil = true;
-		bool aimbot = true;
 		bool fps_bypass = true;
 		bool veritas_hook = true;
 	} cfg;
@@ -37,7 +34,6 @@ int main()
 		bool trigger_bot_state = false;
 		bool fast_run_state = false;
 		bool no_recoil_state = false;
-		bool aimbot = false;
 		int fps_bypass_state = 0;
 		bool veritas_hook_state = false;
 	} state;
@@ -46,12 +42,12 @@ int main()
 	trigger_bot tbot;
 	fast_run f_run;
 	no_recoil n_recoil;
-	aimbot aim_b;
 	fps_bypass fps_b;
 	veritas_hook veri;
 
 	for (;; Sleep(1))
 	{
+		system("CLS");
 		//Toggles
 		if (GetAsyncKeyState(VK_NUMPAD1) && cfg.wall_hack)
 		{
@@ -75,12 +71,6 @@ int main()
 		if (GetAsyncKeyState(VK_NUMPAD4) && cfg.no_recoil)
 		{
 			state.no_recoil_state = n_recoil.toggle(state.no_recoil_state);
-			Sleep(200);
-		}
-
-		if (GetAsyncKeyState(VK_NUMPAD5) && cfg.aimbot)
-		{
-			state.aimbot = aim_b.toggle(state.aimbot);
 			Sleep(200);
 		}
 
@@ -113,7 +103,7 @@ int main()
 			Sleep(200);
 		}
 
-		//update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state, state.aimbot, state.fps_bypass_state);
+		update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state, state.aimbot, state.fps_bypass_state);
 
 		if (state.trigger_bot_state && cfg.trigger_bot)
 		{
@@ -128,11 +118,6 @@ int main()
 			f_run.do_fast_run_macro(6, 230);
 		}
 
-		while (GetAsyncKeyState(VK_SPACE) && state.fast_run_state)
-		{
-			f_run.do_test(50);
-		}
-		
 		if (state.no_recoil_state && cfg.no_recoil)
 		{
 			n_recoil.nop_recoil_function(hProcess);
@@ -158,16 +143,5 @@ int main()
 				veri.reset_flag(hProcess);
 			}
 		}
-
-		//aim_b.update_values(hProcess);
-		//aim_b.print_player_client_no();
-		//aim_b.print_client_info(0);
-		//aim_b.print_client_info(1);
-		//aim_b.print_client_info(3);
-		//aim_b.print_client_info(4);
-		//aim_b.print_client_info(5);
-		//aim_b.print_client_info(6);
-		//aim_b.print_client_info(7);
-		//aim_b.print_client_info(8);
 	}
 }
