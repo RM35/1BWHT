@@ -47,7 +47,6 @@ int main()
 
 	for (;; Sleep(1))
 	{
-		system("CLS");
 		//Toggles
 		if (GetAsyncKeyState(VK_NUMPAD1) && cfg.wall_hack)
 		{
@@ -102,8 +101,6 @@ int main()
 			}
 			Sleep(200);
 		}
-
-		update_console(state.wall_hack_state, state.trigger_bot_state, state.fast_run_state, state.no_recoil_state, state.aimbot, state.fps_bypass_state);
 
 		if (state.trigger_bot_state && cfg.trigger_bot)
 		{

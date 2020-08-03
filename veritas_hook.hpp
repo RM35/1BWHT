@@ -7,10 +7,6 @@
 #include <vector>
 #include <iomanip>
 
-//Over 40 hours of attempts to hook the correct function. Learned alot. Main tools: Cheat Engine, Snowman Decompiler, ilspy, compiler explorer.
-//Hooked function is an error logging function that is called before the main opengl swap buffers therefore hack can turn off before screenshot is loaded
-//for image processing.
-
 class veritas_hook
 {
 public:
@@ -20,12 +16,11 @@ public:
 		0xEB, 0xF0, 0x55, 0x8B, 0xEC, 0x81, 0xEC, 0x08, 0x05, 0x00, 0x00, 0xE9, 0x90, 0x90, 
 		0x90, 0x90 };
 	
-	//Hardcoded addresses as codmp.exe is assumed to always have 0x400000 base address
 	uintptr_t loop_addr = 0xAE1D6F;
 	uintptr_t loop_flag_offset = 0x6E1DB2;
 
-	//Hooked function = vstcommon.dll+4220
-	uintptr_t hooked_func_offset = 0x4220;
+	//                             blaze it
+	uintptr_t hooked_func_offset = 0x4221;
 
 	veritas_hook();
 	bool toggle(bool veritas_hook_state);
